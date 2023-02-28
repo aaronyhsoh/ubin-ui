@@ -1,0 +1,8 @@
+.text-select-box {
+    float: left;
+}
+
+.text-dropdown-box {
+    float: left;
+    text-wrap: inherit;
+}

@@ -1,0 +1,26 @@
+.main-content1 {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 0.2fr 3fr 0.2fr;
+    margin-top: 20px;
+}
+
+.left-empty {
+    float: left;
+    width: 20%;
+}
+
+.middle-content {
+    float: left;
+    width: 100%;
+}
+
+.right-empty {
+    float: left;
+    width: 20%;
+}
+
+.header {
+    text-align: center;
+    /*padding-left: 50%;*/
+}

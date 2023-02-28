@@ -1,0 +1,48 @@
+.table_main {
+    /*width: 100%;*/
+    /*padding: 40px 0px 0px 25px;*/
+    /*overflow-x: scroll;*/
+    /*overflow-y: scroll;*/
+}
+/*.sidebar-main {*/
+/*    float:left;*/
+/*    !*width: 80px;*!*/
+/*    background: dimgrey repeat-y 50% 0;*/
+/*    height: 100%;*/
+/*    position: fixed;*/
+/*    margin-top: 56px;*/
+/*    width: 50px;*/
+/*}*/
+
+/*.sidebar-main ul {*/
+/*    list-style-type: none;*/
+/*}*/
+
+/*.sidebar-objects {*/
+/*    display: inline;*/
+/*    align-content: center;*/
+/*    padding: 0px;*/
+/*}*/
+
+/*.sidebar-objects li {*/
+/*    padding: 15px 0px 0px 10px;*/
+/*}*/
+
+/*.main-content {*/
+/*    width: 100%;*/
+/*    padding: 40px 0px 0px 45px;*/
+/*    !*float: left;*!*/
+/*    !*padding-left: 50px;*!*/
+/*}*/
+
+/*.deleteRowsButton {*/
+/*    padding: 30px 0px 0px 15px;*/
+/*    float: left;*/
+/*}*/
+
+/*.submitButton {*/
+/*    padding: 30px 0px 0px 10px;*/
+/*    float: left;*/
+/*}*/
+
+

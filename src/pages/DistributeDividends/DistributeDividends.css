@@ -1,0 +1,22 @@
+.header {
+    position: relative;
+    padding-left: 0px;
+    top: 0px;
+}
+
+/*.table_main {*/
+    /*width: 100%;*/
+    /*padding: 0px 0px 0px 0px;*/
+/*}*/
+
+.action-bar {
+    position: relative;
+    top: 0px;
+    padding-top: 20px;
+}
+
+.data-table {
+    position: relative;
+    top: 0px;
+    width: 100%;
+}

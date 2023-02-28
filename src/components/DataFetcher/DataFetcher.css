@@ -1,0 +1,20 @@
+.data-fetcher {
+    padding: 0px 0px 60px 0px;
+}
+
+.start-date {
+    float:left;
+    padding-right: 20px;
+}
+
+.end-date {
+    float: left;
+    padding-right: 20px;
+}
+
+.token-form {
+    float: left;
+    padding-right: 20px;
+    padding-bottom: 0px;
+
+}

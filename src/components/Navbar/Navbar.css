@@ -1,0 +1,46 @@
+#navbarSupportedContent {
+    position: relative;
+    z-index: 1001;
+    /*border: 3px solid blue;*/
+    background-color: #343a40;
+    opacity: 0.9;
+    /*text-align: right;*/
+    /*padding-left: 10px;*/
+    /*margin-left: 25px;*/
+    /*padding-bottom: 50px*/
+}
+
+.navbar {
+    position: fixed;
+    z-index: 10;
+    width: 100%;
+}
+
+.content {
+    /*z-index: -1;*/
+    /*margin-top: 30px;*/
+    position: relative;
+}
+
+.sign-out:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.signin-logos {
+    width: 90px
+}
+
+.user-info {
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+    /*padding-right: 20px;*/
+}
+
+.user-info:hover {
+    cursor: pointer;
+    /*transform: scale(1.1);*/
+}
+
+

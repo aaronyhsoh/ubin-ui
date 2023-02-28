@@ -1,0 +1,8 @@
+.input-form {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.input-field {
+    width: 100%;
+}

@@ -1,0 +1,57 @@
+/* group clear rows and delete rows buttons together in a div */
+.left-group {
+    float: left;
+    position: relative;
+    padding: 10px 0px 0px 0px;
+}
+
+.deleteRowsButton {
+    padding: 0px 10px 0px 0px;
+    float: left;
+}
+
+.clearRowsButton {
+    float: left;
+    padding: 0px 10px 10px 0px;
+}
+
+/* group submit button and csv buttons together in a div */
+.right-group {
+    float: left;
+    position: relative;
+    padding: 10px 10px 0px 0px;
+
+}
+
+.submitButton {
+    padding: 0px 10px 10px 0px;
+    float: left;
+}
+
+.csv-buttons {
+    padding: 0px 10px 0px 0px;
+    float: left;
+}
+
+.download-csv-button {
+    padding: 0px 10px 0px 0px;
+    float: left;
+    border-radius: 30px
+}
+
+.download-csv-button:hover {
+    transform: scale(1.1);
+}
+
+.upload-csv-button {
+    /*padding: 10px 10px 0px 0px;*/
+    float: left;
+}
+
+.upload-csv-button:hover {
+    transform: scale(1.1);
+}
+
+input[type="file"] {
+    display: none;
+}

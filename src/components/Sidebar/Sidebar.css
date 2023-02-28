@@ -1,0 +1,42 @@
+.sidebar {
+    float:left;
+    background: dimgrey repeat-y 50% 0;
+    height: 100%;
+    position: fixed;
+    margin-top: 56px;
+    width: 50px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+}
+
+.sidebar-objects {
+    display: inline;
+    align-content: center;
+    padding: 0px;
+    width: 100%;
+}
+
+.sidebar-objects li {
+    /*padding: 15px 0px 0px 10px;*/
+    /*width: 100%;*/
+    padding: 10px;
+}
+
+.sidebar-objects:hover {
+    transform: scale(1.1);
+}
+
+.content {
+    /*float: left;*/
+    /*position: relative;*/
+    padding-left: 70px;
+    padding-top: 70px;
+}
+
+.icon-objects:hover {
+    transform: scale(1.2);
+}
+
+
