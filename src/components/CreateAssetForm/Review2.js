@@ -22,7 +22,6 @@ class Review2 extends React.Component {
       <Grid container spacing={0} className="nationalities-residences" justify="center">
       <Grid item xs={12} sm={6}>
         <List component="nav" aria-label="General Information">
-        <h1>General Information</h1>
          <ListItem>
             <ListItemText primary="Security Name" secondary={createAssetStore.generateInfo().securityName}/>
          </ListItem>
@@ -30,26 +29,15 @@ class Review2 extends React.Component {
              <ListItemText primary="Ticker Code" secondary={createAssetStore.generateInfo().tickerCode}/>
           </ListItem>
          <ListItem>
-            <ListItemText primary="Unique Identifier" secondary={createAssetStore.generateInfo().uniqueIdentifier} />
+            <ListItemText primary="Currency" secondary={createAssetStore.generateInfo().currency} />
+         </ListItem>
+         <ListItem>
+            <ListItemText primary="Amount" secondary={createAssetStore.generateInfo().totalCirculatingAmount} />
          </ListItem>
          </List>
-         <List component="nav" aria-label="Issuance Parameters">
-         <h1>Issuance Parameters</h1>
-           <ListItem>
-                <ListItemText primary={createAssetStore.generateInfo().permittedOrProhibited + " Nationalities" }  secondary={createAssetStore.generateInfo().nationalities.toString()} />
-             </ListItem>
-           <ListItem>
-              <ListItemText primary={createAssetStore.generateInfo().permittedOrProhibited + " Residences"}  secondary={createAssetStore.generateInfo().residences.toString()} />
-           </ListItem>
-           <ListItem>
-              <ListItemText primary="Investor Type" secondary={createAssetStore.generateInfo().investorType.toString()} />
-           </ListItem>
-           <ListItem>
-              <ListItemText primary="KYC cleared by " secondary={createAssetStore.generateInfo().investorsClearedFrom} />
-           </ListItem>
-          </List>
+         
          </Grid>
-       <Grid item xs={12} sm={6}>
+       {/* <Grid item xs={12} sm={6}>
        <List component="nav" aria-label="Eligibility Criteria">
        <h1>Eligibility Criteria</h1>
                <ListItem>
@@ -64,40 +52,10 @@ class Review2 extends React.Component {
                  <ListItem>
                       <ListItemText primary="Coupon Frequency" secondary={createAssetStore.generateInfo().couponFrequency} />
                    </ListItem>
-               <ListItem>
-                    <ListItemText primary="Subscription Start Date" secondary={new Intl.DateTimeFormat('en-GB', {
-                                                                                                      month: 'long',
-                                                                                                      day: '2-digit',
-                                                                                                      year: 'numeric',
-                                                                                                      hour: '2-digit',
-                                                                                                      minute: '2-digit',
-                                                                                                      second: '2-digit',
-                                                                                                      timeZoneName: 'long'
-                                                                                                  }).format(new Date(createAssetStore.generateInfo().subscribeStartDate))} />
-                 </ListItem>
-                <ListItem>
-                     <ListItemText primary="Subscription End Date" secondary={new Intl.DateTimeFormat('en-GB', {
-                                                                                             month: 'long',
-                                                                                             day: '2-digit',
-                                                                                             year: 'numeric',
-                                                                                             hour: '2-digit',
-                                                                                             minute: '2-digit',
-                                                                                             second: '2-digit',
-                                                                                             timeZoneName: 'long'
-                                                                                         }).format(new Date(createAssetStore.generateInfo().subscribeEndDate))}
-                     />
-                  </ListItem>
-                <ListItem>
-                      <ListItemText primary="Minimum Purchase Amount" secondary={createAssetStore.generateInfo().minPurchaseAmount} />
-                   </ListItem>
-                  <ListItem>
-                       <ListItemText primary="Maximum Purchase Amount" secondary={createAssetStore.generateInfo().maxPurchaseAmount} />
-                    </ListItem>
-                  <ListItem>
-                   <ListItemText primary="Annual Coupon Rate (% p.a.)" secondary={parseFloat(Math.round(createAssetStore.generateInfo().annualisedInterestRate * 100) / 100).toFixed(2)} />
-                </ListItem>
+                   
+                
                 </List>
-      </Grid>
+      </Grid> */}
       </Grid>
       </div>
     )

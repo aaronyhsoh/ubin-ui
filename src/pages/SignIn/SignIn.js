@@ -16,7 +16,7 @@ import {userStore} from "../../store/UserStore";
 import * as api from '../../utils/Api';
 import stacs from "../../images/stacs.png";
 import stacs_ubin from "../../images/stacs_ubin.jpeg";
-import ubin_stacs_white from "../../images/ubin_stacs_white.png"
+import spdb_logo1 from "../../images/spdb_logo1.jpg"
 import ubin from "../../images/ubin.png";
 import './SignIn.css'
 
@@ -71,42 +71,60 @@ export default function SignIn(props) {
     var authClient = {
       clientId: "gateway"
     }
+    userStore.isSignedIn = true;
+      userStore.userDetails.organization = "user"
+      userStore.isSignedIn = true;
+      props.login()
     if (password !== "password123") {
       setPasswordError(true);
       return
     }
+    
+    if (password === "password123" && username === "admin1") {
+      userStore.isSignedIn = true;
+      userStore.userDetails.organization = "admin"
+      userStore.isSignedIn = true;
+      props.login();
+    }
 
-    api.verifyLogin(userStore.username)
-      .then(data => {
-        api.getUbinAuth2(authClient)
-          .then(data => {
-            console.log("UBIN token: ", data);
-          })
-        userStore.userDetails = data;
-        userStore.isSignedIn = true;
-        props.login();
-        // if (data) {
-        //   api.getUsers()
-        //     .then(data => {
-        //       for (let i = 0; i < data.length; i++) {
-        //         if (data[i].username === userStore.username) {
-        //           userStore.userDetails = data[i];
-        //           userStore.isSignedIn = true;
-        //           props.login();
-        //           console.log("userDetails", userStore.userDetails);
-        //         }
-        //       }
-        //     })
-        //     .catch(error => {
-        //       console.log(error)
-        //     })
-        // }
-      })
-      .catch(error => {
-        console.log(error)
-        setUsernameError(true);
+    if (password === "password123" && username === "user1") {
+      userStore.isSignedIn = true;
+      userStore.userDetails.organization = "user"
+      userStore.isSignedIn = true;
+      props.login();
+    }
 
-      });
+    // api.verifyLogin(userStore.username)
+    //   .then(data => {
+    //     api.getUbinAuth2(authClient)
+    //       .then(data => {
+    //         console.log("UBIN token: ", data);
+    //       })
+    //     userStore.userDetails = data;
+    //     userStore.isSignedIn = true;
+    //     props.login();
+    //     // if (data) {
+    //     //   api.getUsers()
+    //     //     .then(data => {
+    //     //       for (let i = 0; i < data.length; i++) {
+    //     //         if (data[i].username === userStore.username) {
+    //     //           userStore.userDetails = data[i];
+    //     //           userStore.isSignedIn = true;
+    //     //           props.login();
+    //     //           console.log("userDetails", userStore.userDetails);
+    //     //         }
+    //     //       }
+    //     //     })
+    //     //     .catch(error => {
+    //     //       console.log(error)
+    //     //     })
+    //     // }
+    //   })
+    //   .catch(error => {
+    //     console.log(error)
+    //     setUsernameError(true);
+
+    //   });
 
   }
 
@@ -127,7 +145,7 @@ export default function SignIn(props) {
     <Container component="main" maxWidth="xs">
       <CssBaseline/>
       <div className={classes.paper}>
-        <img className="signin-logos" src={ubin_stacs_white}/>
+        <img className="signin-logos" src={spdb_logo1}/>
 
         {/*<img src="../../images/ubin.png"/>*/}
         {/*<Avatar className={classes.avatar}>*/}

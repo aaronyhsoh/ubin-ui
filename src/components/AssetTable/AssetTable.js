@@ -80,14 +80,13 @@ class AssetTable extends React.Component {
         console.log(data);
         buyerPageStore.availableAssets = data;
         for (let i = 0; i < data.length; i++) {
-          let formattedDate = moment(data[i].maturityDate, 'YYYY-MM-DDTHH:mm:ss.SSSZ').format('DD/MM/YYYY hh:mm a');
-          buyerPageStore.availableAssets[i].maturityDate = formattedDate;
+          let formattedDate = moment(data[i].createdAt, 'YYYY-MM-DDTHH:mm:ss.SSSZ').format('DD/MM/YYYY hh:mm a');
+          buyerPageStore.availableAssets[i].issueDate = formattedDate;
 
-          let issuePriceUnit = parseFloat(Math.round(data[i].issuePrice * 100) / 100).toFixed(2);
-          buyerPageStore.availableAssets[i].issuePrice = issuePriceUnit;
+          let amount = parseFloat(Math.round(data[i].amount) / (10**18)).toFixed(2);
+          buyerPageStore.availableAssets[i].amount = amount;
 
-          let issueSize = data[i].totalQuantity.toLocaleString();
-          buyerPageStore.availableAssets[i].totalQuantity = issueSize;
+          
         }
         this.setState({
           availableAssets: buyerPageStore.availableAssets
@@ -154,8 +153,8 @@ class AssetTable extends React.Component {
 
     const columns = [
       {
-        name: "securityName",
-        label: "Security Name",
+        name: "pool",
+        label: "Pool",
         options: {
           filter: true,
           sort: true,
@@ -163,8 +162,8 @@ class AssetTable extends React.Component {
         }
       },
       {
-        name: "tickerCode",
-        label: "Ticker Code",
+        name: "pool",
+        label: "Token ID",
         options: {
           filter: true,
           sort: true,
@@ -172,8 +171,8 @@ class AssetTable extends React.Component {
         }
       },
       {
-        name: "totalQuantity",
-        label: "Issue Size",
+        name: "currency",
+        label: "Currency",
         options: {
           filter: true,
           sort: true,
@@ -182,30 +181,26 @@ class AssetTable extends React.Component {
         }
       },
       {
-        name: "maturityDate",
-        label: "Maturity Date",
+        name: "amount",
+        label: "Amount",
         options: {
           filter: true,
           sort: true,
+          resizableColumns: false
+
         }
       },
       {
-        name: "issuePrice",
-        label: "Issue Price (USD)",
+        name: "approvalStatus",
+        label: "Status",
         options: {
           filter: true,
           sort: true,
-          viewColumns: false,
+          resizableColumns: false
+
         }
       },
-      {
-        name: "couponRatePercent",
-        label: "Coupon Rate (%)",
-        options: {
-          filter: true,
-          sort: true,
-        }
-      },
+      
       {
         name: "issueDate",
         label: "",
@@ -285,7 +280,7 @@ class AssetTable extends React.Component {
       <div>
         <MuiThemeProvider theme={this.getMuiTheme()}>
         <MUIDataTable
-          title={"Investment Opportunities"}
+          title={"Issuance"}
           data={availableAssets}
           columns={columns}
           options={options}/>

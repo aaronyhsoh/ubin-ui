@@ -26,12 +26,12 @@ class WalletStore {
   //     "lastUpdatedDate": "2019-10-18T06:12:57.526+0000"
   //   },];
 
-  ubinWallet = [];
-  stacsWallet = [];
+  cashBalance = [];
+  stablecoinBalance = [];
 
   clearData() {
-    this.ubinWallet = [];
-    this.stacsWallet = [];
+    this.cashBalance = [];
+    this.stablecoinBalance = [];
   }
 
 

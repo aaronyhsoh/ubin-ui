@@ -9,7 +9,7 @@ class Ubin extends React.Component {
       <div className="ubin-content">
         <div className="left-empty"/>
         <div className="middle-content">
-          <h1 className="header">Issue Asset</h1>
+          <h1 className="header">Submit Stablecoin Issuance Request</h1>
           <HorizontalNonLinearAlternativeLabelStepper/>
         </div>
         <div className="right-empty"/>

@@ -1,17 +1,15 @@
+import { data } from 'jquery';
 import _ from './Constants';
 
 // let url = _.PORT.LOCAL_ENV;
 let url = _.PORT.TESTING_ENV
 
-export async function getUbinAuth2(auth2) {
-  let response = await fetch(url + _.PATHS.UBIN_AUTH, {
-    method: 'post',
+export async function getCashBalance(userId) {
+  let response = await fetch(url + _.PATHS.GET_CASH_BALANCE + "/" + userId, {
+    method: 'GET',
     headers: {
       "Content-type": "application/json; charset=UTF-8"
     },
-    body:
-      JSON.stringify(auth2)
-
   })
   let data = await response.json();
   return data;
@@ -43,12 +41,22 @@ export async function submitForPayment({ paymentCurrency, payerWalletAddress, to
 }
 
 export async function createAsset(formData) {
+  console.log(formData)
+  let reqBody = {
+    pool: "SPDBSC",
+    amount: formData.totalCirculatingAmount,
+    tokenIndex: "",
+    currency: formData.currency,
+    messagingMethod: null,
+    userId: "user1"
+  }
   let response = await fetch(url + _.PATHS.CREATE_ASSET, {
-    method: 'post',
-    headers: { "Content-type": "application/json; charset=UTF-8"},
-    body: JSON.stringify(formData)
+    method: 'POST',
+    headers: { "Content-type": "application/json; charset=utf-8"},
+    body: JSON.stringify(reqBody)
   })
-  let data = await response.json();
+  
+  let data = await response;
   return data;
 }
 
@@ -80,11 +88,11 @@ export async function getUsers() {
   return data;
 }
 
-export async function getWalletBalance(walletRequest) {
-  let response = await fetch(url + _.PATHS.GET_WALLET_BALANCE, {
-    method: 'post',
+export async function getWalletBalance(userId) {
+  let response = await fetch(url + _.PATHS.GET_WALLET_BALANCE + "/" + userId, {
+    method: 'GET',
     headers: { "Content-type": "application/json; charset=UTF-8"},
-    body: JSON.stringify(walletRequest)
+    //body: JSON.stringify(walletRequest)
   })
   let data = await response.json();
   return data;
@@ -132,7 +140,7 @@ export async function executeEscrowAction(escrowActionRequest) {
 
 export async function getIssuedAssets(issuedAssetsRequest) {
   let response = await fetch(url + _.PATHS.GET_ISSUED_ASSETS, {
-    method: 'post',
+    method: 'GET',
     headers: { "Content-type": "application/json; charset=UTF-8"},
     body: JSON.stringify(issuedAssetsRequest)
   })

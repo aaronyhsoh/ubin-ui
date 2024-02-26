@@ -42,16 +42,16 @@ const routes = [
     component: () => <TransactionHistory/>,
     breadcrumb: 'TransactionHistory',
     display: true,
-    access: "buyer"
+    access: "admin"
   },
   {
-    path: _.URLS.CREATE_BOND,
-    title: 'Configure Bond',
+    path: _.URLS.ISSUANCE_REQUEST,
+    title: 'Issuance Request',
     img: <FontAwesomeIcon icon={faUserFriends} style={{color: 'white', fontSize: '22px'}}/>,
     component: () => <Ubin/>,
-    breadcrumb: 'Create Bond',
+    breadcrumb: 'Issuance Request',
     display: true,
-    access: "seller"
+    access: "user"
   },
   {
     path: _.URLS.PLACE_HOLDER4,
@@ -126,7 +126,7 @@ class Navbar extends React.Component {
     return (
       <Router>
         <nav className="navbar navbar-expand-lg navbar-light bg-dark">
-          <img className="signin-logos" style={{width: '90px'}} src={stacs_ubin_navbar}/>
+          {/* <img className="signin-logos" style={{width: '90px'}} src={stacs_ubin_navbar}/> */}
           <div className="navbar-header">
             <button onClick={this.toggleNavbar} className={`${classTwo}`} type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent"

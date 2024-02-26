@@ -14,6 +14,7 @@ class CreateAssetModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      content: "Are you sure you want to issue asset?",
       redirect: false,
       spinner: false
     }
@@ -37,11 +38,20 @@ class CreateAssetModal extends React.Component {
     })
     api.createAsset(info)
       .then(data => {
-        this.props.showOrHideModal();
-        this.setState({
-          spinner: false,
-          redirect: true
-        })
+        console.log(data)
+        if (data.status === 200) {
+          this.setState({
+            content: "SUccess"
+          });
+
+          setTimeout(() => {
+            this.props.showOrHideModal();
+            this.setState({
+              spinner: false,
+              redirect: true
+            })
+          }, 2000)
+        }
       })
       .catch(error => { console.log(error); })
     this.props.showOrHideModal();
@@ -59,7 +69,7 @@ class CreateAssetModal extends React.Component {
         <Modal isOpen={show} toggle={showOrHideModal} className={this.props.className}>
           <ModalHeader toggle={showOrHideModal}>{this.props.modalHeader}</ModalHeader>
           <ModalBody>
-            Are you sure you want to issue asset?
+            {this.state.content}
           </ModalBody>
           <ModalFooter>
             <Button color="primary" onClick={this.issueAsset}>Confirm</Button>{' '}

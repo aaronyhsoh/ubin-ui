@@ -12,11 +12,17 @@ class CreateAssetStore {
   ];
 
   defaultCurrencies = [
-    {value: 'USD', label: '$',},
-    {value: 'EUR', label: '€',},
-    {value: 'BTC', label: '฿',},
-    {value: 'JPY', label: '¥',},
-    {value: 'SGD', label: '$$'}
+    {value: 'USD', label: 'USD',},
+    {value: 'EUR', label: 'EUR',},
+    {value: 'CAD', label: 'CAD',},
+    {value: 'JPY', label: 'JPY',},
+    {value: 'SGD', label: 'SGD'},
+    {value: 'NOK', label: 'NOK'},
+    {value: 'GBP', label: 'GBP'},
+    {value: 'SEK', label: 'SEK'},
+    {value: 'CHF', label: 'CHF'},
+    {value: 'NZD', label: 'NZD'},
+    {value: 'AUD', label: 'AUD'},
   ];
 
   investorType = [
@@ -591,46 +597,46 @@ formData = {
       securityName: {label: 'Security Name', inputType: 'text', value: ''},
       //securityClass: {label: 'Security Class', inputType: 'text', value: ''},
       tickerCode: {label: 'Ticker Code', inputType: 'text', value: ''},
-      uniqueIdentifierCode: {label: 'Unique Identifier Code', value: 'ISIN', availableValues: this.typeOfUniqueIdentifier},
-      uniqueIdentifier: {label: 'Unique Identifier', inputType: 'multifieldAnySelect', value:'', secondaryInput: "uniqueIdentifierCode"},
+      currency: {label: 'Currency', inputType: 'dropdown', value: 'SGD', availableValues: this.defaultCurrencies},
+      totalCirculatingAmount: {label: 'Amount', inputType: 'number', value: ''}
       //issuerName: {label: 'Issuer Name', inputType: 'text', value: ''},
       //issuanceAuthority: {label: 'Issuance Authority', inputType: 'text', value: ''}
     },
 
     // Step 2 info
-    step2: {
-      // issuingAddress: {label: 'Issuing Address', inputType: 'text', value: ''},
-      totalCirculatingAmount: {label: 'Issue Size', inputType: 'number', value: ''},
-      //reservedAmount: {label: 'Reserved Amount', inputType: 'number', value: '0'},
-      //tokensPerLot: {label: 'Tokens Per Lot', inputType: '', value: "1"},
-      paymentCurrency: {label: 'Currency', value: 'USD', availableValues: this.defaultCurrencies},
-      //issuancePrice: {label: 'Issuance Price', inputType: 'multifieldSelect', value: '', secondaryInput: 'paymentCurrency'},
-     issuancePrice: {label: 'Issuance Price (USD)', inputType: 'number', value: ''},
-      faceValue: {label: 'Face Value (USD)', inputType: 'number', value: ''},
-      couponFrequency: {label: 'Coupon Periods', inputType: 'multifieldSelect', value: '', secondaryInput: 'frequencyUnit'},
-      frequencyUnit: {label: 'Frequency', value: 'days', availableValues: this.frequencyUnit},
-      subscribeStartDate: {label: 'Subscription Start Date', inputType: 'date', value: new Date().toISOString()},
-      subscribeEndDate: {label: 'Subscription End Date', inputType: 'date', value: this.initDates(new Date(),1, 'weeks')},
-      issueDate: {label: 'Issue Date', inputType: 'date', value: this.initDates(new Date(), 8, 'days')},
-      nextCouponDate: {label: 'Next Coupon Date', inputType: 'date', value: this.initDates(new Date(),1, 'annual')},
-      maturityDate: {label: 'Maturity Date', inputType: 'date', value: this.initDates(new Date(),2, 'annual')},
-      minPurchaseAmount: {label: 'Min Purchase Amount', inputType: 'number', value: ''},
-      maxPurchaseAmount: {label: 'Max Purchase Amount', inputType: 'number', value: ''},
-      //lockupDays: {label: 'Lockup', inputType: 'number', value: ''},
-      //disbursementCurrency: {label: 'Disbursement Currency', inputType: 'dropdown', value: 'SGD', availableValues: this.defaultCurrencies},
-      annualisedInterestRate: {label: 'Annual Coupon Rate (% p.a.)', inputType: 'text', value: ''}
-    },
+    // step2: {
+    //   // issuingAddress: {label: 'Issuing Address', inputType: 'text', value: ''},
+    //   totalCirculatingAmount: {label: 'Issue Size', inputType: 'number', value: ''},
+    //   //reservedAmount: {label: 'Reserved Amount', inputType: 'number', value: '0'},
+    //   //tokensPerLot: {label: 'Tokens Per Lot', inputType: '', value: "1"},
+    //   paymentCurrency: {label: 'Currency', value: 'USD', availableValues: this.defaultCurrencies},
+    //   //issuancePrice: {label: 'Issuance Price', inputType: 'multifieldSelect', value: '', secondaryInput: 'paymentCurrency'},
+    //  issuancePrice: {label: 'Issuance Price (USD)', inputType: 'number', value: ''},
+    //   faceValue: {label: 'Face Value (USD)', inputType: 'number', value: ''},
+    //   couponFrequency: {label: 'Coupon Periods', inputType: 'multifieldSelect', value: '', secondaryInput: 'frequencyUnit'},
+    //   frequencyUnit: {label: 'Frequency', value: 'days', availableValues: this.frequencyUnit},
+    //   subscribeStartDate: {label: 'Subscription Start Date', inputType: 'date', value: new Date().toISOString()},
+    //   subscribeEndDate: {label: 'Subscription End Date', inputType: 'date', value: this.initDates(new Date(),1, 'weeks')},
+    //   issueDate: {label: 'Issue Date', inputType: 'date', value: this.initDates(new Date(), 8, 'days')},
+    //   nextCouponDate: {label: 'Next Coupon Date', inputType: 'date', value: this.initDates(new Date(),1, 'annual')},
+    //   maturityDate: {label: 'Maturity Date', inputType: 'date', value: this.initDates(new Date(),2, 'annual')},
+    //   minPurchaseAmount: {label: 'Min Purchase Amount', inputType: 'number', value: ''},
+    //   maxPurchaseAmount: {label: 'Max Purchase Amount', inputType: 'number', value: ''},
+    //   //lockupDays: {label: 'Lockup', inputType: 'number', value: ''},
+    //   //disbursementCurrency: {label: 'Disbursement Currency', inputType: 'dropdown', value: 'SGD', availableValues: this.defaultCurrencies},
+    //   annualisedInterestRate: {label: 'Annual Coupon Rate (% p.a.)', inputType: 'text', value: ''}
+    // },
 
-    // Step 3 info
-    step3: {
-      //exchange: {label: 'Exchange', inputType: 'text', value: ''},
-      //leadUnderwriter: {label: 'Lead Underwriter', inputType: 'text', value: ''},
-      permittedOrProhibited: {label: 'Permitted', inputType: 'selector', value: 'permitted'},
-      nationalities: {label: 'Nationalities', inputType: '', value: [], availableValues: this.nationalities},
-      residences: {label: 'Residences', inputType: '', value: [], availableValues: this.residences},
-      investorType: {label: 'InvestorType', inputType: '', value: [], availableValues: this.investorType},
-      investorsClearedFrom: {label: 'KYC cleared by', inputType: 'text', value: 'Bank'}
-    }
+    // // Step 3 info
+    // step3: {
+    //   //exchange: {label: 'Exchange', inputType: 'text', value: ''},
+    //   //leadUnderwriter: {label: 'Lead Underwriter', inputType: 'text', value: ''},
+    //   permittedOrProhibited: {label: 'Permitted', inputType: 'selector', value: 'permitted'},
+    //   nationalities: {label: 'Nationalities', inputType: '', value: [], availableValues: this.nationalities},
+    //   residences: {label: 'Residences', inputType: '', value: [], availableValues: this.residences},
+    //   investorType: {label: 'InvestorType', inputType: '', value: [], availableValues: this.investorType},
+    //   investorsClearedFrom: {label: 'KYC cleared by', inputType: 'text', value: 'Bank'}
+    // }
   }
 
   generateInfo() {
@@ -650,50 +656,50 @@ formData = {
         info[i.toString()] = formData.step1[i.toString()].value;
       }
     }
-    for (var i in formData.step2) {
-      if(formData.step2.hasOwnProperty(i)) {
-        if (i.toString() === 'couponFrequency') {
-          info[i.toString()] = formData.step2.couponFrequency.value.concat(' ' + formData.step2.frequencyUnit.value);
-          continue;
-        }
-        if (i.toString() === 'frequencyUnit') {
-          continue;
-        }
-        info[i.toString()] = formData.step2[i.toString()].value;
-      }
-    }
-    for (var i in formData.step3) {
-      if(formData.step3.hasOwnProperty(i)) {
-        if ((i.toString() === 'residences') || (i.toString() === 'nationalities') || (i.toString() === 'investorType')) {
-          let temp = formData.step3[i.toString()].value;
-          let arrayString = '';
-          temp.forEach(function (item) {
+    // for (var i in formData.step2) {
+    //   if(formData.step2.hasOwnProperty(i)) {
+    //     if (i.toString() === 'couponFrequency') {
+    //       info[i.toString()] = formData.step2.couponFrequency.value.concat(' ' + formData.step2.frequencyUnit.value);
+    //       continue;
+    //     }
+    //     if (i.toString() === 'frequencyUnit') {
+    //       continue;
+    //     }
+    //     info[i.toString()] = formData.step2[i.toString()].value;
+    //   }
+    // }
+    // for (var i in formData.step3) {
+    //   if(formData.step3.hasOwnProperty(i)) {
+    //     if ((i.toString() === 'residences') || (i.toString() === 'nationalities') || (i.toString() === 'investorType')) {
+    //       let temp = formData.step3[i.toString()].value;
+    //       let arrayString = '';
+    //       temp.forEach(function (item) {
 
-            arrayString = arrayString.concat(item + ",");
-          })
-          info[i.toString()] = arrayString.substring(0,arrayString.length-1);
-          continue;
-        } /*
-        else if((i.toString() === 'investorType')) {
-            let temp = formData.step3[i.toString()].values;
-            let arrayString ='';
-            temp.forEach(function (item) {
-                arrayString = arrayString.concat(temp)
-            })
-            info[i.toString()] = arrayString;
-            continue;
-        } */
-        info[i.toString()] = formData.step3[i.toString()].value;
-      }
-    }
+    //         arrayString = arrayString.concat(item + ",");
+    //       })
+    //       info[i.toString()] = arrayString.substring(0,arrayString.length-1);
+    //       continue;
+    //     } /*
+    //     else if((i.toString() === 'investorType')) {
+    //         let temp = formData.step3[i.toString()].values;
+    //         let arrayString ='';
+    //         temp.forEach(function (item) {
+    //             arrayString = arrayString.concat(temp)
+    //         })
+    //         info[i.toString()] = arrayString;
+    //         continue;
+    //     } */
+    //     info[i.toString()] = formData.step3[i.toString()].value;
+    //   }
+    // }
 
     info.issuerId = userStore.username;
-    info.disbursementCurrency = "USD";
-    info.reservedAmount = "0";
-    info.lockupDays = "1";
-    info.classOfSecurity = "BONDS";
-    info.blockchainType = "stacs";
-    info.reservedAmount = "0";
+    // info.currency = "USD";
+    // info.reservedAmount = "0";
+    // info.lockupDays = "1";
+    // info.classOfSecurity = "BONDS";
+    // info.blockchainType = "stacs";
+    // info.reservedAmount = "0";
 
     return info;
 

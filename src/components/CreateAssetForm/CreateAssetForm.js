@@ -11,6 +11,8 @@ import Review2 from "./Review2";
 import {createAssetStore} from "./CreateAssetStore";
 import ConfirmationModal from "../Modal/ConfirmationModal";
 import CreateAssetModal from "../Modal/CreateAssetModal";
+import * as api from "../../utils/Api";
+import SuccessModal from "../Modal/SuccessModal";
 
 
 const useStyles = makeStyles(theme => ({
@@ -33,15 +35,13 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function getSteps() {
-  return ['General Information', 'Issuance Parameters', 'Eligibility Criteria', 'Review'];
+  return ['General Information', 'Review'];
 }
 
 function getStepContent(step) {
   switch (step) {
     case 0:return <Steps step="step1"/>;
-    case 1:return <Steps step="step2"/>;
-    case 2:return <Steps step="step3"/>;
-    case 3:return <Review2/>;
+    case 1:return <Review2/>;
     default:
       return 'Unknown step';
   }
@@ -153,6 +153,18 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
     setSkipped(new Set());
   };
 
+  function issueAsset() {
+    const info =createAssetStore.generateInfo();
+    api.createAsset(info)
+      .then(data => {
+        console.log(data)
+        if (data.status === 200) {
+          toggleModal()
+        }
+      })
+      .catch(error => { console.log(error); })
+  }
+
   const isStepSkipped = step => {
     return skipped.has(step);
   };
@@ -206,7 +218,7 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
               {getStepContent(activeStep)}
             </Typography>
             <div style={{padding: '20px'}}></div>
-            <div>
+            <div style = {{ textAlign: 'center'}}>
               <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
                 Back
               </Button>
@@ -216,15 +228,15 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
                 color="primary"
                 onClick={handleNext}
                 className={classes.button}
-                disabled={activeStep === 3}
+                disabled={activeStep === 1}
               >
                 Next
               </Button>
-              {activeStep === 3 ?
+              {activeStep === 1 ?
                 <Button
                   variant="contained"
                   color="primary"
-                  onClick={toggleModal}
+                  onClick={() => issueAsset()}
                 >
                   Submit
                 </Button>
@@ -256,8 +268,8 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
         )}
       </div>
       <div style={{padding: '20px'}}></div>
-      <CreateAssetModal
-        modalHeader="Configure Bond"
+      <SuccessModal
+        modalHeader="Success"
         showOrHideModal={toggleModal}
         show={showModal}
         // modalData={this.modalBody()}
