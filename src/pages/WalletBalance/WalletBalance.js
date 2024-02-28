@@ -4,16 +4,10 @@ import Box from "@material-ui/core/Box";
 import './WalletBalance.css';
 import {walletStore} from "../../store/WalletStore";
 import {Button} from "react-bootstrap";
-import {forEach} from "react-bootstrap/utils/ElementChildren";
 import * as api from "../../utils/Api";
 import {userStore} from "../../store/UserStore";
-import LaunchIcon from '@material-ui/icons/Launch';
-import Link from '@material-ui/core/Link';
 import moment from "moment";
-import Paho from "paho-mqtt";
-import {transactionHistoryStore} from "../../store/TransactionHistoryStore";
-import {buyerPageStore} from "../../store/BuyerPageStore";
-import CircularIndeterminate from "../../components/Spinner/Spinner";
+import RedeemModal from "../../components/Modal/RedeemModal";
 
 class WalletBalance extends React.Component {
   constructor(props) {
@@ -22,13 +16,26 @@ class WalletBalance extends React.Component {
     this.state = {
       cashBalance: walletStore.cashBalance,
       updating: false,
-      formattedDate: moment().format('DD/MM/YYYY hh:mm a')
+      formattedDate: moment().format('DD/MM/YYYY hh:mm a'),
+      modal: false
     }
 
     this.initData();
 
     this.initData = this.initData.bind(this);
 
+  }
+
+  toggleModal() {
+    if (this.state.modal) {
+      this.setState({
+        modal: false
+      })
+    } else {
+      this.setState({
+        modal: true
+      })
+    }
   }
 
   initData() {
@@ -89,7 +96,6 @@ class WalletBalance extends React.Component {
 
     let stablecoinBalance = walletStore.stablecoinBalance.map(function (object, index) {
       
-
       return (
         <div key={index} style={{width: "33%", marginTop: "10px", marginBottom: "15px"}}>
           <div style={{
@@ -146,7 +152,6 @@ class WalletBalance extends React.Component {
             marginTop: "3px"
           }}>&nbsp;
           </div>
-
         </div>
       )
     })
@@ -166,17 +171,23 @@ class WalletBalance extends React.Component {
         </Box>
         <div style={{padding: "20px", marginBottom: "20px"}}></div>
         <div style={{visibility:this.org === 'seller' ? "hidden" : "visible"}}>
-        <Box borderColor="grey.500" border={1} borderRadius="borderRadius" marginBottom="100px">
-          <h3 style={{float: "left", padding: "20px", textDecoration: "underline"}}>Stablecoin Account
-            Balance</h3><Link href={this.stacsAddressUrl} target="_blank"><LaunchIcon
-          style={{marginLeft: "-10px", marginTop: "25px"}}/></Link>
-          <div style={{paddingLeft: 20, paddingRight: 20}}>
-            <Grid container spacing={0} className="nationalities-residences">
-              {stablecoinBalance}
-            </Grid>
-          </div>
-        </Box>
+          <Box borderColor="grey.500" border={1} borderRadius="borderRadius" marginBottom="100px">
+            <h3 style={{float: "left", padding: "20px", textDecoration: "underline"}}>Stablecoin Account Balance</h3>
+            <Button style={{marginLeft: "-10px", marginTop: "25px"}} onClick={() => {this.toggleModal()}}>Redeem</Button>
+            {/* <Link href={this.stacsAddressUrl} target="_blank">
+              <LaunchIcon style={{marginLeft: "-10px", marginTop: "25px"}}/>
+            </Link> */}
+            <div style={{paddingLeft: 20, paddingRight: 20}}>
+              <Grid container spacing={0} className="nationalities-residences">
+                {stablecoinBalance}
+              </Grid>
+            </div>
+          </Box>
         </div>
+        <RedeemModal
+          modalHeader="Redeem"
+          showOrHideModal={() => this.toggleModal()}
+          show={this.state.modal}/>
       </div>
 
     )

@@ -21,7 +21,7 @@ class AssetTable extends React.Component {
     super(props);
 
     this.state = {
-      availableAssets: buyerPageStore.initData(),
+      availableAssets: buyerPageStore.initData(userStore.username),
       selectedRow: {},
       showModal: false,
       purchaseUnits: 0,
@@ -75,7 +75,7 @@ class AssetTable extends React.Component {
   }
 
   fetchData() {
-    api.getAvailableAssets()
+    api.getAvailableAssets(userStore.username)
       .then(data => {
         console.log(data);
         buyerPageStore.availableAssets = data;
@@ -83,7 +83,7 @@ class AssetTable extends React.Component {
           let formattedDate = moment(data[i].createdAt, 'YYYY-MM-DDTHH:mm:ss.SSSZ').format('DD/MM/YYYY hh:mm a');
           buyerPageStore.availableAssets[i].issueDate = formattedDate;
 
-          let amount = parseFloat(Math.round(data[i].amount) / (10**18)).toFixed(2);
+          let amount = parseFloat(data[i].amount).toFixed(2);
           buyerPageStore.availableAssets[i].amount = amount;
 
           

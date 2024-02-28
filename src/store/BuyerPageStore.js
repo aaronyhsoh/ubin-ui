@@ -37,8 +37,8 @@ class BuyerPageStore {
 
 
   // Fetch list of bonds / funds
-  initData() {
-    api.getAvailableAssets()
+  initData(userId) {
+    api.getAvailableAssets(userId)
       .then(data => {
         this.availableAssets = data;
 
@@ -68,28 +68,7 @@ class BuyerPageStore {
   }
 
   subscribeToAsset() {
-    let subscribeAssetRequest = {
-      blockchainType: "stacs",
-      buyerId: userStore.username,
-      tickerCode: this.selectedRow.tickerCode,
-      tokenAmountToPurchase: this.amountToPurchase,
-      totalPricePaid: this.totalPricePaid,
-      priceCurrency: "USD",
-      unitPricePerToken: this.selectedRow.unitPrice
-    }
-
-    api.subscribeToAsset(subscribeAssetRequest)
-      .then(data => {
-        //if (data) {
-          console.log("SUCCESS");
-          //this.autoList.push(data);
-          if (this.isAuto === true) {
-           this.autoList.push(data.ubinRequestId);
-
-          }
-        //}
-      })
-      .catch(error => console.log(error));
+    
   }
 
   formatDateString(dateISOString) {

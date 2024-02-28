@@ -72,9 +72,9 @@ export async function verifyLogin(username) {
   return data;
 }
 
-export async function getAvailableAssets() {
-  let response = await  fetch(url + _.PATHS.GET_AVAILABLE_ASSETS, {
-    method: 'get'
+export async function getAvailableAssets(userId) {
+  let response = await  fetch(url + _.PATHS.GET_AVAILABLE_ASSETS + "/" + userId, {
+    method: 'GET'
   })
   let data = await response.json();
   return data;
@@ -98,11 +98,10 @@ export async function getWalletBalance(userId) {
   return data;
 }
 
-export async function getTransactionHistory(transactionHistoryRequest) {
-  let response = await fetch(url + _.PATHS.GET_TRANSACTION_HISTORY, {
-    method: 'post',
+export async function getAllPendingIssuance() {
+  let response = await fetch(url + _.PATHS.GET_ALL_PENDING_ISSUANCE, {
+    method: 'GET',
     headers: { "Content-type": "application/json; charset=UTF-8"},
-    body: JSON.stringify(transactionHistoryRequest)
   })
   let data = await response.json();
   return data;
@@ -118,21 +117,21 @@ export async function viewAsset(viewAssetRequest) {
   return data;
 }
 
-export async function subscribeToAsset(subscribeAssetRequest) {
-  let response = await fetch(url + _.PATHS.SUBSCRIBE_TO_ASSET, {
-    method: 'post',
+export async function approveIssuance(requestBody) {
+  let response = await fetch(url + _.PATHS.APPROVE_ISSUANCE, {
+    method: 'POST',
     headers: { "Content-type": "application/json; charset=UTF-8"},
-    body: JSON.stringify(subscribeAssetRequest)
+    body: JSON.stringify(requestBody)
   })
   let data= await response.json();
   return data;
 }
 
-export async function executeEscrowAction(escrowActionRequest) {
-  let response = await fetch(url + _.PATHS.ESCROW_ACTION, {
-    method: 'post',
+export async function submitRedemptionRequest(redemptionRequestBody) {
+  let response = await fetch(url + _.PATHS.REDEMPTION_REQUEST, {
+    method: 'POST',
     headers: { "Content-type": "application/json; charset=UTF-8"},
-    body: JSON.stringify(escrowActionRequest)
+    body: JSON.stringify(redemptionRequestBody)
   })
   let data= await response.json();
   return data;

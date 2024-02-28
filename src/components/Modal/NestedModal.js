@@ -19,7 +19,6 @@ class NestedModal extends React.Component {
     }
 
     this.confirmSubmission = this.confirmSubmission.bind(this);
-    this.subscribeToAsset = this.subscribeToAsset.bind(this);
   }
 
   redirect = () => {
@@ -31,41 +30,6 @@ class NestedModal extends React.Component {
   }
 
   subscribeToAsset() {
-
-    let subscribeAssetRequest = {
-      blockchainType: "stacs",
-      buyerId: userStore.username,
-      tickerCode: buyerPageStore.selectedRow.tickerCode,
-      tokenAmountToPurchase: buyerPageStore.amountToPurchase,
-      totalPricePaid: buyerPageStore.totalPricePaid,
-      priceCurrency: "USD",
-      unitPricePerToken: buyerPageStore.selectedRow.unitPrice
-    }
-
-    this.props.showOrHideModal();
-    this.setState({
-      spinner: true,
-      submitted: true
-    })
-
-    api.subscribeToAsset(subscribeAssetRequest)
-      .then(data => {
-        //if (data) {
-        console.log("SUCCESS");
-        //this.autoList.push(data);
-        if (buyerPageStore.isAuto === true) {
-          buyerPageStore.autoList.push(data.ubinRequestId);
-        }
-
-        this.props.hideOuterModal();
-
-        this.setState({
-          redirect: true,
-          spinner: false
-        })
-        //}
-      })
-      .catch(error => console.log(error));
   }
 
   confirmSubmission() {

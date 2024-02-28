@@ -21,10 +21,10 @@ export default {
     GET_AVAILABLE_ASSETS: '/query/issuance/pending',
     GET_ALL_USERS: '/getUsers',
     GET_WALLET_BALANCE: '/query/wallet/balance',
-    GET_TRANSACTION_HISTORY: '/viewOrderBook',
+    GET_ALL_PENDING_ISSUANCE: '/query/issuance/admin',
     VIEW_ASSET: '/viewAsset',
-    SUBSCRIBE_TO_ASSET: '/subscribeToAsset',
-    ESCROW_ACTION: '/executeEscrowAction',
+    APPROVE_ISSUANCE: '/submit/issuance/approve',
+    REDEMPTION_REQUEST: '/submit/redemption/request',
     GET_ISSUED_ASSETS: '/query/issuance/pending',
     GET_CASH_BALANCE: '/query/cash/balance'
   }

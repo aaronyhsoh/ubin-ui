@@ -71,10 +71,11 @@ export default function SignIn(props) {
     var authClient = {
       clientId: "gateway"
     }
-    userStore.isSignedIn = true;
-      userStore.userDetails.organization = "user"
-      userStore.isSignedIn = true;
-      props.login()
+    // userStore.isSignedIn = true;
+    //   userStore.userDetails.organization = "admin"
+    //   userStore.isSignedIn = true;
+    //   userStore.username = "admin1"
+    //   props.login()
     if (password !== "password123") {
       setPasswordError(true);
       return

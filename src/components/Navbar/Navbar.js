@@ -32,7 +32,7 @@ const routes = [
     component: () => <Home/>,
     breadcrumb: 'Home',
     display: true,
-    access: "all"
+    access: "user"
   },
   {
     path: _.URLS.TRANSACTION_HISTORY,
@@ -60,7 +60,7 @@ const routes = [
     component: () => <BuyerPage/>,
     breadcrumb: 'User Management',
     display: false,
-    access: "all"
+    access: "admin"
   },
   {
     path: _.URLS.WALLET_BALANCE,
@@ -69,7 +69,7 @@ const routes = [
     component: () => <WalletBalance/>,
     breadcrumb: 'Profile',
     display: true,
-    access: "all"
+    access: "user"
   }, //buyer
 ];
 
@@ -107,9 +107,15 @@ class Navbar extends React.Component {
 
   redirect = () => {
     if (this.props.justLoggedIn === true) {
-      return (
-        <Redirect to="/home"/>
-      )
+      if (userStore.organization === "user") {
+        return (
+          <Redirect to="/home"/>
+        )
+      } else {
+        return (
+          <Redirect to="/transaction_history"/>
+        )
+      }
     }
   }
 
