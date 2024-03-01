@@ -5,17 +5,10 @@ import TableCell from "@material-ui/core/TableCell";
 import {Button} from "react-bootstrap";
 import {transactionHistoryStore} from "../../store/TransactionHistoryStore";
 import * as api from "../../utils/Api";
-import {userStore} from "../../store/UserStore";
-import {buyerPageStore} from "../../store/BuyerPageStore";
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import {MuiThemeProvider} from "@material-ui/core";
-import ExpandableRow from "../AssetTable/ExpandableRow";
-import TextList from "../TextList/TextList";
 import moment from "moment";
-import SockJS from 'sockjs-client';
-import Stomp from '@stomp/stompjs';
-import Paho from 'paho-mqtt'
-import CircularIndeterminate from "../Spinner/Spinner";
+import ApproveIssuanceModal from "../Modal/ApproveIssuanceModal";
 
 class TransactionHistoryTable extends React.Component {
   constructor(props) {
@@ -26,6 +19,7 @@ class TransactionHistoryTable extends React.Component {
       showModal: false
     }
     this.initData = this.initData.bind(this);
+    this.initData();
   }
 
   initData() {
@@ -50,13 +44,21 @@ class TransactionHistoryTable extends React.Component {
         }
         this.setState({
           data: transactionHistoryStore.tableData,
-          showModal: true
         })
       })
       .catch(error => console.log(error));
   }
 
+  toggleModal() {
+    if (this.state.showModal) {
+      this.setState({showModal: false})
+    } else {
+      this.setState({showModal: true})
+    }
+  }
+
   approveIssuance(rowData, rowData2) {
+    console.log("approveIssuance")
     let reqBody = {
       pool: rowData2.rowData[0],
       currency: rowData2.rowData[2],
@@ -68,10 +70,19 @@ class TransactionHistoryTable extends React.Component {
     api.approveIssuance(reqBody)
       .then(data => {
         console.log(data);
+        this.setState({
+          showModal: true
+        })
+
+        setTimeout(() => {
+          this.setState({
+            showModal: false
+          })
+          this.initData()
+        }, 2000)
 
       })
     console.log(transactionHistoryStore.tableData)
-
   }
 
   getMuiTheme = () => createMuiTheme({
@@ -102,9 +113,9 @@ class TransactionHistoryTable extends React.Component {
     }
   })
   
-  componentDidMount() {
-    this.initData();
-  }
+  // componentDidMount() {
+  //   this.initData();
+  // }
 
   render() {
     const columns = [
@@ -192,7 +203,6 @@ class TransactionHistoryTable extends React.Component {
               <TableCell colSpan={2} align="right">
                 {/*<TextList type="label" data={transactionHistoryStore.tableData[index]}/>*/}
                 <p>{transactionHistoryStore.tableData[index].issuanceId !== null ? "Transaction ID: " : ""}</p>
-                
               </TableCell>
               <TableCell colSpan={4} align="left">
                 {/*<TextList type="value" data={buyerPageStore.availableAssets[rowMeta.dataIndex]}/>*/}
@@ -208,11 +218,14 @@ class TransactionHistoryTable extends React.Component {
     };
     return (
       <div>
-        {/*<Button onClick={this.initData}>Refresh</Button>*/}
+        {/* <Button onClick={() => {this.initData() }}>Refresh</Button> */}
+        <ApproveIssuanceModal
+            show={this.state.showModal}
+            showOrHideModal={()=> this.toggleModal()}
+          />
         <MuiThemeProvider theme={this.getMuiTheme()}>
-
           <MUIDataTable
-            title={"Order Status"}
+            title={"Issuance"}
             data={transactionHistoryStore.tableData}
             columns={columns}
             options={options}/>

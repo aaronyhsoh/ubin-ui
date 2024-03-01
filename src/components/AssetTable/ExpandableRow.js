@@ -23,21 +23,21 @@ class ExpandableRow extends React.Component {
 
   componentDidMount() {
     this.mounted = true;
-    let viewAssetRequest = {
-      blockchainType : "stacs",
-      tickerCode: buyerPageStore.availableAssets[this.props.rowIndex].tickerCode,
-      requesterId: userStore.username
-    }
-    api.viewAsset(viewAssetRequest)
-      .then(data => {
-        buyerPageStore.selectedRow = data;
-        if (this.mounted) {
-          this.setState({
-            data: data
-          })
-        }
-      })
-      .catch(error => console.log(error));
+  //   let viewAssetRequest = {
+  //     blockchainType : "stacs",
+  //     tickerCode: buyerPageStore.availableAssets[this.props.rowIndex].tickerCode,
+  //     requesterId: userStore.username
+  //   }
+  //   api.viewAsset(viewAssetRequest)
+  //     .then(data => {
+  //       buyerPageStore.selectedRow = data;
+  //       if (this.mounted) {
+  //         this.setState({
+  //           data: data
+  //         })
+  //       }
+  //     })
+  //     .catch(error => console.log(error));
   }
 
   toggleModal() {
@@ -81,21 +81,21 @@ class ExpandableRow extends React.Component {
   }
 
   fetchAssetData() {
-    let viewAssetRequest = {
-      blockchainType : "stacs",
-      tickerCode: buyerPageStore.availableAssets[this.props.rowIndex].tickerCode,
-      requesterId: userStore.username
-    }
-    api.viewAsset(viewAssetRequest)
-      .then(data => {
-        buyerPageStore.selectedRow = data;
-        if (this.mounted) {
-          this.setState({
-            data: data
-          })
-        }
-      })
-      .catch(error => console.log(error));
+    // let viewAssetRequest = {
+    //   blockchainType : "stacs",
+    //   tickerCode: buyerPageStore.availableAssets[this.props.rowIndex].tickerCode,
+    //   requesterId: userStore.username
+    // }
+    // api.viewAsset(viewAssetRequest)
+    //   .then(data => {
+    //     buyerPageStore.selectedRow = data;
+    //     if (this.mounted) {
+    //       this.setState({
+    //         data: data
+    //       })
+    //     }
+    //   })
+    //   .catch(error => console.log(error));
   }
 
   render() {

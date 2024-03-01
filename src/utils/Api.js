@@ -107,11 +107,10 @@ export async function getAllPendingIssuance() {
   return data;
 }
 
-export async function viewAsset(viewAssetRequest) {
-  let response = await fetch(url + _.PATHS.VIEW_ASSET, {
-    method: 'post',
+export async function getAllRedemptionRequests() {
+  let response = await fetch(url + _.PATHS.GET_ALL_REDEMPTION_REQUESTS, {
+    method: 'GET',
     headers: { "Content-type": "application/json; charset=UTF-8"},
-    body: JSON.stringify(viewAssetRequest)
   })
   let data= await response.json();
   return data;
@@ -119,6 +118,16 @@ export async function viewAsset(viewAssetRequest) {
 
 export async function approveIssuance(requestBody) {
   let response = await fetch(url + _.PATHS.APPROVE_ISSUANCE, {
+    method: 'POST',
+    headers: { "Content-type": "application/json; charset=UTF-8"},
+    body: JSON.stringify(requestBody)
+  })
+  let data= await response.json();
+  return data;
+}
+
+export async function approveRedemption(requestBody) {
+  let response = await fetch(url + _.PATHS.APPROVE_REDEMPTION, {
     method: 'POST',
     headers: { "Content-type": "application/json; charset=UTF-8"},
     body: JSON.stringify(requestBody)

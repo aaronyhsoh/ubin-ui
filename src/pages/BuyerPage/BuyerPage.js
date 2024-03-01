@@ -8,6 +8,7 @@ import ConfirmationModal from '../../components/Modal/ConfirmationModal';
 import AssetTable from "../../components/AssetTable/AssetTable";
 import './BuyerPage.css';
 import {buyerPageStore} from "../../store/BuyerPageStore";
+import RedemptionTable from '../../components/AssetTable/RedemptionTable';
 
 class BuyerPage extends React.Component {
   constructor(props) {
@@ -30,7 +31,7 @@ class BuyerPage extends React.Component {
 
           <div className="left-empty"/>
           <div className="middle-content">
-            <AssetTable />
+            <RedemptionTable/>
           </div>
           <div className="right-empty"/>
 

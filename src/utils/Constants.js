@@ -5,7 +5,8 @@ export default {
     TRANSACTION_HISTORY: '/transaction_history',
     ISSUANCE_REQUEST: '/issuance_request',
     WALLET_BALANCE: '/wallet_balance',
-    PLACE_HOLDER4: '/place_holder4'
+    PLACE_HOLDER4: '/place_holder4',
+    REDEMPTION_PAGE: '/redemption'
   },
   PORT: {
     LOCAL_ENV: 'http://localhost:8080',
@@ -22,10 +23,11 @@ export default {
     GET_ALL_USERS: '/getUsers',
     GET_WALLET_BALANCE: '/query/wallet/balance',
     GET_ALL_PENDING_ISSUANCE: '/query/issuance/admin',
-    VIEW_ASSET: '/viewAsset',
+    GET_ALL_REDEMPTION_REQUESTS: '/query/redemption/admin',
     APPROVE_ISSUANCE: '/submit/issuance/approve',
     REDEMPTION_REQUEST: '/submit/redemption/request',
     GET_ISSUED_ASSETS: '/query/issuance/pending',
-    GET_CASH_BALANCE: '/query/cash/balance'
+    GET_CASH_BALANCE: '/query/cash/balance',
+    APPROVE_REDEMPTION: '/submit/redemption/approve'
   }
 }

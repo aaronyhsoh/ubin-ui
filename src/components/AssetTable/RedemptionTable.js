@@ -3,7 +3,7 @@ import React from 'react';
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import {Button} from "react-bootstrap";
-import ConfirmationModal from "../Modal/ConfirmationModal";
+import SuccessModal from "../Modal/SuccessModal";
 import {MuiThemeProvider, TextField} from "@material-ui/core";
 import {buyerPageStore} from "../../store/BuyerPageStore";
 import {userStore} from "../../store/UserStore"
@@ -13,9 +13,10 @@ import ExpandableRow from "./ExpandableRow";
 import ModalBody from "./ModalBody";
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import moment from "moment";
+import ApproveIssuanceModal from "../Modal/ApproveIssuanceModal";
 
 
-class AssetTable extends React.Component {
+class RedemptionTable extends React.Component {
 
   constructor(props) {
     super(props);
@@ -36,6 +37,8 @@ class AssetTable extends React.Component {
     this.toggleModal = this.toggleModal.bind(this);
     this.changeAmount = this.changeAmount.bind(this);
   }
+
+
 
   handleClick(rowMeta) {
     if (this.state.showModal) {
@@ -74,8 +77,33 @@ class AssetTable extends React.Component {
     // console.log(buyerPageStore.selectedRow);
   }
 
+  approveRedemption(data1, data2) {
+    console.log(data2)
+    let requestBody = {
+        id: data2.rowData[0],
+        pool: data2.rowData[1],
+        amount: data2.rowData[4],
+        userId: data2.rowData[6]
+    } 
+    
+    api.approveRedemption(requestBody)
+        .then(data => {
+            console.log(data);
+            this.setState({
+                showModal: true
+            })
+
+            setTimeout(() => {
+                this.setState({
+                    showModal: false
+                })
+                this.fetchData()
+            }, 2000)
+        })
+  }
+
   fetchData() {
-    api.getAvailableAssets(userStore.username)
+    api.getAllRedemptionRequests()
       .then(data => {
         console.log(data);
         buyerPageStore.availableAssets = data;
@@ -152,6 +180,16 @@ class AssetTable extends React.Component {
     console.log(buyerPageStore.availableAssets)
 
     const columns = [
+        {
+            name: "id",
+            label: "ID",
+            options: {
+              filter: true,
+              sort: true,
+              display: false
+              //sortDirection: 'asc'
+            }
+        },
       {
         name: "pool",
         label: "Pool",
@@ -176,7 +214,8 @@ class AssetTable extends React.Component {
         options: {
           filter: true,
           sort: true,
-          resizableColumns: false
+          resizableColumns: false,
+          display: false
 
         }
       },
@@ -197,16 +236,32 @@ class AssetTable extends React.Component {
           filter: true,
           sort: true,
           resizableColumns: false
-
         }
       },
-      
+      {
+        name: "userId",
+        label: "User ID",
+        options: {
+          filter: true,
+          sort: true,
+          display: false
+          //sortDirection: 'asc'
+        }
+    },
       {
         name: "issueDate",
         label: "",
         options: {
           sortDirection: "asc",
           display: false
+        }
+      },
+      {
+        name: "",
+        options: {
+          customBodyRender: (value, value2) => { return (
+            value2.rowData[5] === "APPROVED" ? "" : <Button onClick={() => this.approveRedemption(value, value2)}>Approve</Button>
+          )}    
         }
       }
       // {
@@ -264,14 +319,10 @@ class AssetTable extends React.Component {
       responsive: 'scrollMaxHeight',
       expandableRows: true,
       renderExpandableRow: (rowData, rowMeta) => {
-        this.getAssetData();
+        
         // this.selectRow(rowMeta);
         return (
-          <ExpandableRow
-            rowIndex={rowMeta.dataIndex}
-            toggleModal={this.toggleModal}
-            selectRow={this.selectRow}
-          />
+          <p>Test</p>
         )
       }
     };
@@ -280,20 +331,20 @@ class AssetTable extends React.Component {
       <div>
         <MuiThemeProvider theme={this.getMuiTheme()}>
         <MUIDataTable
-          title={"Issuance"}
+          title={"Redemption"}
           data={availableAssets}
           columns={columns}
           options={options}/>
-        </MuiThemeProvider>
-        <ConfirmationModal
-          modalHeader={buyerPageStore.selectedRow.tickerCode}
-          showOrHideModal={this.toggleModal}
-          show={showModal}
-          modalData={this.modalBody()}
-        />
+        </MuiThemeProvider> 
+        <ApproveIssuanceModal
+            modalHeader="Success"
+            showOrHideModal={() => this.toggleModal()}
+            show={showModal}
+        // modalData={this.modalBody()}
+      />
       </div>
     )
   }
 }
 
-export default AssetTable;
+export default RedemptionTable;

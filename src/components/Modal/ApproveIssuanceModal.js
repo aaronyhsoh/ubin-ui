@@ -15,34 +15,18 @@ class ApproveIssuanceModal extends React.Component {
     }
   }
 
-  toggleRedirect() {
-    this.setState({
-        redirect: !this.state.redirect
-    })
-  }
-  redirect = () => {
-    if (this.state.redirect === true) {
-      return (
-        <Redirect to="/home"/>
-      )
-    }
-  }
-
   render() {
     const {showOrHideModal, hideOuterModal, show, modalHeader, modalData} = this.props;
 
     return (
       <div>
-        {this.redirect()}
         {/*<Button color="danger" onClick={this.toggle}>{this.props.buttonLabel}</Button>*/}
         <Modal isOpen={show} toggle={showOrHideModal} className={this.props.className}>
           <ModalHeader toggle={showOrHideModal}>{this.props.modalHeader}</ModalHeader>
           <ModalBody>
             {this.state.content}
           </ModalBody>
-          <ModalFooter>
-            <Button color="primary" onClick={() => this.toggleRedirect()}>Ok</Button>{' '}
-          </ModalFooter>
+          
         </Modal>
       </div>
     );

@@ -36,7 +36,7 @@ const routes = [
   },
   {
     path: _.URLS.TRANSACTION_HISTORY,
-    title: 'Order Status',
+    title: 'Issuance',
     img: <FontAwesomeIcon icon={faMoneyCheckAlt} style={{color: 'white', fontSize: '22px'}}/>,
     //component: () => <DistributeDividends/>,
     component: () => <TransactionHistory/>,
@@ -54,12 +54,12 @@ const routes = [
     access: "user"
   },
   {
-    path: _.URLS.PLACE_HOLDER4,
-    title: 'Test',
+    path: _.URLS.REDEMPTION_PAGE,
+    title: 'Redemptions',
     img: <FontAwesomeIcon icon={faPhone} style={{color: 'white', fontSize: '22px'}}/>,
     component: () => <BuyerPage/>,
     breadcrumb: 'User Management',
-    display: false,
+    display: true,
     access: "admin"
   },
   {
@@ -71,6 +71,16 @@ const routes = [
     display: true,
     access: "user"
   }, //buyer
+  // {
+  //   path: _.URLS.REDEMPTION_PAGE,
+  //   title: 'Account Balance',
+  //   img: <FontAwesomeIcon icon={faMoneyCheckAlt} style={{color: 'white', fontSize: '22px'}}/>,
+  //   component: () => <WalletBalance/>,
+  //   breadcrumb: 'Profile',
+  //   display: true,
+  //   access: "user"
+  // }, //buyer
+  
 ];
 
 const activeStyle = {

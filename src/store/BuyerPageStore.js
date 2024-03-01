@@ -54,17 +54,17 @@ class BuyerPageStore {
   }
 
   fetchAssetData(rowIndex) {
-    let viewAssetRequest = {
-      blockchainType : "stacs",
-      tickerCode: buyerPageStore.availableAssets[rowIndex].tickerCode,
-      requesterId: userStore.username
-    }
-    api.viewAsset(viewAssetRequest)
-      .then(data => {
-        buyerPageStore.selectedRow = data;
-        return data;
-      })
-      .catch(error => console.log(error));
+    // let viewAssetRequest = {
+    //   blockchainType : "stacs",
+    //   tickerCode: buyerPageStore.availableAssets[rowIndex].tickerCode,
+    //   requesterId: userStore.username
+    // }
+    // api.viewAsset(viewAssetRequest)
+    //   .then(data => {
+    //     buyerPageStore.selectedRow = data;
+    //     return data;
+    //   })
+    //   .catch(error => console.log(error));
   }
 
   subscribeToAsset() {
