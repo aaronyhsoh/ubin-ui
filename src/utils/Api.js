@@ -43,12 +43,12 @@ export async function submitForPayment({ paymentCurrency, payerWalletAddress, to
 export async function createAsset(formData) {
   console.log(formData)
   let reqBody = {
-    pool: "SPDBSC",
+    pool: formData.securityName,
     amount: formData.totalCirculatingAmount,
     tokenIndex: "",
     currency: formData.currency,
     messagingMethod: null,
-    userId: "user1"
+    userId: formData.issuerId
   }
   let response = await fetch(url + _.PATHS.CREATE_ASSET, {
     method: 'POST',

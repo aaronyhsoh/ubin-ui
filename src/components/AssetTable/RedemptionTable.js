@@ -244,10 +244,20 @@ class RedemptionTable extends React.Component {
         options: {
           filter: true,
           sort: true,
-          display: false
+          display: true
           //sortDirection: 'asc'
         }
     },
+    {
+      name: "burnId",
+      label: "Transaction ID",
+      options: {
+        filter: true,
+        sort: true,
+        display: false
+        //sortDirection: 'asc'
+      }
+  },
       {
         name: "issueDate",
         label: "",
@@ -321,9 +331,25 @@ class RedemptionTable extends React.Component {
       renderExpandableRow: (rowData, rowMeta) => {
         
         // this.selectRow(rowMeta);
-        return (
-          <p>Test</p>
-        )
+        console.log(rowData)
+        if (rowData[7] !== null) {
+          return (
+            <TableRow>
+              <TableCell/>
+              <TableCell colSpan={2} align="right">
+                {/*<TextList type="label" data={transactionHistoryStore.tableData[index]}/>*/}
+                <p>{"Transaction ID: "}</p>
+              </TableCell>
+              <TableCell colSpan={4} align="left">
+                {/*<TextList type="value" data={buyerPageStore.availableAssets[rowMeta.dataIndex]}/>*/}
+                <p><a
+                  href={"http://localhost:5002/ui/namespaces/default/tokens/transfers?time=24hours&slide=" + rowData[7]}
+                  target="_blank">{rowData[7]}</a></p>
+                
+              </TableCell>
+            </TableRow>
+          )
+        }
       }
     };
 

@@ -27,7 +27,7 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        Project Ubin
+        
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -146,7 +146,7 @@ export default function SignIn(props) {
     <Container component="main" maxWidth="xs">
       <CssBaseline/>
       <div className={classes.paper}>
-        <img className="signin-logos" src={spdb_logo1}/>
+        {/* <img className="signin-logos" src={spdb_logo1}/> */}
 
         {/*<img src="../../images/ubin.png"/>*/}
         {/*<Avatar className={classes.avatar}>*/}

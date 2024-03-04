@@ -79,8 +79,6 @@ class RedeemModal extends React.Component {
   render() {
     const {showOrHideModal, hideOuterModal, show, modalHeader} = this.props;
 
-    
-
     return (
       <div>
         {this.redirect()}

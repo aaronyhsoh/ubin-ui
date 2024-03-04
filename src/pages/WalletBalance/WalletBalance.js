@@ -161,7 +161,7 @@ class WalletBalance extends React.Component {
         <h1>Account Balance <span style={{fontSize: 'large'}}>Last Updated: {this.state.formattedDate} <Button onClick={this.initData}>Refresh</Button></span></h1>
         {/* <Button onClick={this.initData}>Refresh</Button> */}
         <Box borderColor="grey.500" border={1} borderRadius="borderRadius">
-          <h3 style={{float: "left", padding: "20px", textDecoration: "underline"}}>Cash Balance</h3>
+          <h3 style={{float: "left", padding: "20px", textDecoration: "underline"}}>Available Quota</h3>
           {/* <Link href={this.ubinUrl} target="_blank"><LaunchIcon style={{marginLeft: "-10px", marginTop: "25px"}}/></Link> */}
           <div style={{paddingLeft: 20, paddingRight: 20}}>
             <Grid container spacing={0} className="nationalities-residences">
