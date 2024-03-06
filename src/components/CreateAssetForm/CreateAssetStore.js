@@ -594,9 +594,9 @@ class CreateAssetStore {
 formData = {
     currentStep: 'step1',
     step1: {
-      securityName: {label: 'Security Name', inputType: 'text', value: ''},
+      securityName: {label: 'Stablecoin Pool', inputType: 'text', value: ''},
       //securityClass: {label: 'Security Class', inputType: 'text', value: ''},
-      tickerCode: {label: 'Ticker Code', inputType: 'text', value: ''},
+      tickerCode: {label: 'Stablecoin ID', inputType: 'text', value: ''},
       currency: {label: 'Currency', inputType: 'dropdown', value: 'SGD', availableValues: this.defaultCurrencies},
       totalCirculatingAmount: {label: 'Amount', inputType: 'number', value: ''}
       //issuerName: {label: 'Issuer Name', inputType: 'text', value: ''},

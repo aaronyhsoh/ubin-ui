@@ -23,10 +23,10 @@ class Review2 extends React.Component {
       <Grid item xs={12} sm={6}>
         <List component="nav" aria-label="General Information">
          <ListItem>
-            <ListItemText primary="Security Name" secondary={createAssetStore.generateInfo().securityName}/>
+            <ListItemText primary="Stablecoin Pool" secondary={createAssetStore.generateInfo().securityName}/>
          </ListItem>
          <ListItem>
-             <ListItemText primary="Ticker Code" secondary={createAssetStore.generateInfo().tickerCode}/>
+             <ListItemText primary="Stablecoin ID" secondary={createAssetStore.generateInfo().tickerCode}/>
           </ListItem>
          <ListItem>
             <ListItemText primary="Currency" secondary={createAssetStore.generateInfo().currency} />
